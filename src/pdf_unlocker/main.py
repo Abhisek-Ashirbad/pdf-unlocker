@@ -12,31 +12,19 @@ def remove_pdf_password(input_path, output_path, password):
     except Exception as e:
         print(f"Error: {e}")
 
-def normalize_argv(argv):
-    normalized = []
-    for token in argv:
-        if token.startswith("input_path="):
-            normalized.append(token.split("=", 1)[1])
-        elif token.startswith("output_path="):
-            normalized.append(token.split("=", 1)[1])
-        elif token.startswith("password="):
-            normalized.append(token.split("=", 1)[1])
-        else:
-            normalized.append(token)
-    return normalized
-
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Remove password from PDF files",
+        description="Remove password from PDF file(s)",
         prog="unlock"
     )
-    parser.add_argument("input_path", help="Path to the encrypted PDF file")
-    parser.add_argument("output_path", help="Path to save the unlocked PDF file")
-    parser.add_argument("password", help="Password to unlock the PDF")
+    parser.add_argument("-i", "--input_path", required=True, help="Path to the protected PDF")
+    parser.add_argument("-o", "--output_path", required=True, help="Path to save the unlocked PDF")
+    parser.add_argument("-p", "--password", required=True, help="The PDF password")
     
-    args = parser.parse_args(normalize_argv(sys.argv[1:]))
+    args = parser.parse_args()
     remove_pdf_password(args.input_path, args.output_path, args.password)
+
 
 if __name__ == "__main__":
     main()
