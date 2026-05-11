@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools-scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pdf-unlocker"
+# Mark dependencies as dynamic so setuptools knows to look elsewhere
+dynamic = ["version", "dependencies"]
+
+[tool.setuptools.dynamic]
+# Point to your requirements file
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools]
+# This tells setuptools where to find your code
+package-dir = {"" = "src"}
+
+[tool.setuptools_scm]
+# Optional: writes the version to a file so it's accessible easily
+write_to = "src/pdf_unlocker/_version.py"
+
+[project.scripts]
+# Creates a command 'unlock' that calls main() in main.py
+unlock = "pdf_unlocker.main:main"
