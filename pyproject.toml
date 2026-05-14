@@ -17,8 +17,8 @@ package-dir = {"" = "src"}
 
 [tool.setuptools_scm]
 # Optional: writes the version to a file so it's accessible easily
-write_to = "src/pdf_unlocker/_version.py"
+version_file = "src/pdf_unlocker/_version.py"
 
 [project.scripts]
 # Creates a command 'unlock' that calls main() in main.py
-unlock = "pdf_unlocker.main:main"
+unlock = "pdf_unlocker.app:main"

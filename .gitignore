@@ -220,3 +220,6 @@ __marimo__/
 # Test PDF file(s)
 *.pdf
 *.PDF
+
+#Live Version file
+_version.py
