@@ -1,0 +1,16 @@
+# codecov.yml
+coverage:
+  status:
+    project:
+      default:
+        # Enforce that pull requests cannot drop the global project target metrics
+        target: auto
+        threshold: 0.5% 
+    patch:
+      default:
+        # Enforce that any newly added PR lines must have 100% test coverage
+        target: 100%
+
+comment:
+  layout: "reach, diff, flags, files"
+  behavior: default # Updates the same PR comment thread dynamically on new pushes

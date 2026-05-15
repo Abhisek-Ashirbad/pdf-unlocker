@@ -11,6 +11,7 @@ To run all the UTs and generate coverage
 * 0.0.1 - Initial config and setup
 * 0.0.2 - Added custom flags and added modularity to the CLI
 * 0.0.3 - Added UI to the app and also UTs (coverage 100%)
+* 1.0.0 - Application v1 is finally released with all the specs
 
 ## Builds
 ### Windows

@@ -43,3 +43,11 @@ jobs:
       with:
         name: html-coverage-report
         path: htmlcov/
+
+    - name: Upload Coverage Results to Codecov
+      uses: codecov/codecov-action@v5
+      with:
+        # Required for private repos, highly recommended for public repos
+        token: ${{ secrets.CODECOV_TOKEN }} 
+        files: ./coverage.xml
+        fail_ci_if_error: true
