@@ -1,7 +1,7 @@
 # pdf-unlocker
 A simple script to remove password from your PDF (provided you've the original password). 
 
-
+[![codecov](https://codecov.io/github/Abhisek-Ashirbad/pdf-unlocker/graph/badge.svg?token=75IBCT3JAJ)](https://codecov.io/github/Abhisek-Ashirbad/pdf-unlocker)
 
 ## Tests
 To run all the UTs and generate coverage
