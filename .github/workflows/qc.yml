@@ -35,4 +35,11 @@ jobs:
     - name: Run Test Suite with Coverage Strict Constraints
       run: |
         # xvfb-run hosts a virtual display layout so Tkinter initialization succeeds
-        xvfb-run pytest --cov=my_app --cov-report=term-missing --cov-fail-under=100
+        xvfb-run pytest --cov=pdf_unlocker --cov-report=term-missing --cov-fail-under=100
+
+    - name: Upload HTML Coverage Report Dashboard
+      if: always() # Ensures the dashboard uploads even if tests fail
+      uses: actions/upload-artifact@v4
+      with:
+        name: html-coverage-report
+        path: htmlcov/
