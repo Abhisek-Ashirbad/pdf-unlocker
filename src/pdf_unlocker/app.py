@@ -7,6 +7,7 @@ from pdf_unlocker.core.unlocker import remove_pdf_password
 
 
 def run_cli(input_path, output_path, password):
+    """Core CLI logic separated from argument parsing for easier testing."""
     # Fallback to masked terminal prompt if -p wasn't explicitly typed
     if not password:
         password = pwinput.pwinput(prompt="Enter PDF Password: ", mask="*")
@@ -28,6 +29,7 @@ def run_cli(input_path, output_path, password):
 
 
 def main():
+    """Entry point for the application. Parses command-line arguments and dispatches to CLI or GUI."""
     # If no arguments are provided, launch the GUI
     if len(sys.argv) == 1:
         from pdf_unlocker.ui.pdf_unlocker_gui import run_gui

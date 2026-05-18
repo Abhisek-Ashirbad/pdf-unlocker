@@ -53,6 +53,7 @@ def test_gui_success_message(app, mocker):
 
 
 def test_gui_file_not_found_error(app, mocker):
+    """Verify error box handling when the specified input file does not exist."""
     mock_error = mocker.patch('tkinter.messagebox.showerror')
     app.input_file = "missing.pdf"
     app.output_file = "out.pdf"
@@ -68,6 +69,7 @@ def test_gui_file_not_found_error(app, mocker):
 
 
 def test_gui_unexpected_exception(app, mocker):
+    """Verify error box handling when an unexpected exception is raised during the unlock process."""
     mock_error = mocker.patch('tkinter.messagebox.showerror')
     app.input_file = "file.pdf"
     app.output_file = "out.pdf"
@@ -82,6 +84,7 @@ def test_gui_unexpected_exception(app, mocker):
 
 
 def test_password_field_cleared_on_success(app, mocker):
+    """Verify that the password entry field is cleared after a successful unlock operation."""
     mocker.patch('tkinter.messagebox.showinfo')
     delete_mock = mocker.patch.object(app.entry_pwd, 'delete')
     mocker.patch.object(app.entry_pwd, 'get', return_value="pwd")
@@ -96,6 +99,7 @@ def test_password_field_cleared_on_success(app, mocker):
 
 
 def test_select_input_file_chosen(app, mocker):
+    """Verify that selecting an input file updates the internal state and label text accordingly."""
     mocker.patch(
         'tkinter.filedialog.askopenfilename',
         return_value="/tmp/test.pdf"
@@ -105,13 +109,17 @@ def test_select_input_file_chosen(app, mocker):
     assert app.input_file == "/tmp/test.pdf"
     configure_mock.assert_called_once()
 
+
 def test_run_gui_starts_mainloop(mocker):
+    """Verify that the run_gui function initializes the PDFUnlockerUI and starts the mainloop."""
     mock_ui = mocker.Mock()
     mocker.patch('pdf_unlocker.ui.pdf_unlocker_gui.PDFUnlockerUI', return_value=mock_ui)
     run_gui()
     mock_ui.mainloop.assert_called_once()
 
+
 def test_select_input_no_file(app, mocker):
+    """Verify that if the file dialog is canceled (returns an empty string), the internal state remains unchanged and no label update occurs."""
     mocker.patch(
         'tkinter.filedialog.askopenfilename',
         return_value=""
@@ -123,6 +131,7 @@ def test_select_input_no_file(app, mocker):
 
 
 def test_select_output_file_chosen(app, mocker):
+    """Verify that selecting an output file updates the internal state and label text accordingly."""
     mocker.patch(
         'tkinter.filedialog.asksaveasfilename',
         return_value="/tmp/out.pdf"
@@ -131,5 +140,3 @@ def test_select_output_file_chosen(app, mocker):
     app.select_output()
     assert app.output_file == "/tmp/out.pdf"
     configure_mock.assert_called_once()
-
-

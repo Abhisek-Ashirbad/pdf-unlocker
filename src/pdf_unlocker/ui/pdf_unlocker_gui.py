@@ -10,7 +10,10 @@ ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("blue")
 
 class PDFUnlockerUI(ctk.CTk):
+    """Graphical User Interface for PDF Password Removal using CustomTkinter."""
+
     def __init__(self):
+        """Initialize the main application window and its widgets."""
         super().__init__()
         self.title("PDF Password Remover")
         self.geometry("500x350")
@@ -32,7 +35,9 @@ class PDFUnlockerUI(ctk.CTk):
         self.output_file = ""
         self.create_widgets()
 
+
     def create_widgets(self):
+        """Set up the GUI components: buttons, labels, and entry fields."""
         self.btn_input = ctk.CTkButton(self, text="Select Protected PDF", command=self.select_input)
         self.btn_input.pack(pady=(20, 5))
         self.lbl_input = ctk.CTkLabel(self, text="No file selected", text_color="gray")
@@ -51,19 +56,25 @@ class PDFUnlockerUI(ctk.CTk):
         self.btn_unlock = ctk.CTkButton(self, text="Unlock PDF", fg_color="green", hover_color="darkgreen", command=self.unlock_pdf)
         self.btn_unlock.pack(pady=25)
 
+
     def select_input(self):
+        """Open a file dialog to select the protected PDF file."""
         file = filedialog.askopenfilename(filetypes=[("PDF Files", "*.pdf")])
         if file:
             self.input_file = file
             self.lbl_input.configure(text=os.path.basename(file), text_color="white")
 
+
     def select_output(self):
+        """Open a file dialog to select the save destination for the unlocked PDF."""
         file = filedialog.asksaveasfilename(defaultextension=".pdf", filetypes=[("PDF Files", "*.pdf")])
         if file:
             self.output_file = file
             self.lbl_output.configure(text=os.path.basename(file), text_color="white")
 
+
     def unlock_pdf(self):
+        """Attempt to remove the password from the selected PDF using the provided password."""
         if not self.input_file or not self.output_file:
             messagebox.showerror("Error", "Please select both input and output paths.")
             return
@@ -86,6 +97,8 @@ class PDFUnlockerUI(ctk.CTk):
         except Exception as e:
             messagebox.showerror("Error", f"An unexpected error occurred:\n{str(e)}")
 
+
 def run_gui():
+    """Launch the PDF Unlocker GUI application."""
     ui_app = PDFUnlockerUI()
     ui_app.mainloop()

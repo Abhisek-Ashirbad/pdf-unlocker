@@ -14,7 +14,6 @@ pillow==12.2.0
 pluggy==1.6.0
 pwinput==1.0.3
 Pygments==2.20.0
-pyinstaller==6.20.0
 pyinstaller-hooks-contrib==2026.5
 pyproject_hooks==1.2.0
 pytest==9.0.3
@@ -23,5 +22,6 @@ pytest-mock==3.15.1
 pywin32-ctypes==0.2.3
 setuptools==82.0.1
 setuptools-scm==10.0.5
+Sphinx>=7.0,<8
 vcs-versioning==1.1.1
 wrapt==2.1.2
